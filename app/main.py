@@ -10,7 +10,6 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-
 # Dependency
 def get_db():
     db = SessionLocal()
@@ -21,8 +20,8 @@ def get_db():
 
 
 @app.get("/")
-def health_check():
-    return "Hello"
+def read_root():
+    return {"Hello": "World"}
 
 @app.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
