@@ -10,19 +10,14 @@ jobs:
   run_locally:
     if: github.event.pull_request.merged == true
     runs-on: self-hosted
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set PowerShell Execution Policy (Windows specific)
+      - name: Use Python 3.12 from PATH
         run: |
-          Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12.4'
+          python --version
 
       - name: Install dependencies
         run: |
