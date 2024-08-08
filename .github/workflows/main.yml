@@ -1,5 +1,5 @@
 name: Run FastAPI Locally on PR Merge
-
+  
 on:
   pull_request:
     types: [closed]
