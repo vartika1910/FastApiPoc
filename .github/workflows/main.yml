@@ -26,13 +26,3 @@ jobs:
       - name: Start FastAPI server
         run: |
           uvicorn app.main:app --host 127.0.0.1 --port 5000 --reload
-
-      - name: Check disk space (optional troubleshooting step)
-        run: |
-          df -h
-          echo "Disk space checked."
-
-      - name: Test Python installation (optional troubleshooting step)
-        run: |
-          python --version
-          which python
