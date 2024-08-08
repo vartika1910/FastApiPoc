@@ -1,5 +1,5 @@
 name: Run FastAPI Locally on PR Merge
-  
+
 on:
   pull_request:
     types: [closed]
@@ -19,6 +19,8 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
+          # Uncomment the next line and adjust the path if you've installed Python manually
+          python-location: 'C:\Users\Vartika.Yadav\AppData\Local\Programs\Python\Python312\python.exe'
 
       - name: Install dependencies
         run: |
@@ -29,3 +31,12 @@ jobs:
         run: |
           uvicorn app.main:app --host 127.0.0.1 --port 5000 --reload
 
+      - name: Check disk space (optional troubleshooting step)
+        run: |
+          df -h
+          echo "Disk space checked."
+
+      - name: Test Python installation (optional troubleshooting step)
+        run: |
+          python --version
+          which python
