@@ -33,11 +33,19 @@ jobs:
         run: |
           docker run -d -p 5000:5000 vartika1910/fastapi-app:latest
 
+      - name: Wait for server to start
+        run: sleep 10
+
       - name: Test FastAPI service
         run: |
           curl --fail http://localhost:5000/
 
+      - name: Print Docker container logs (in case of failure)
+        if: failure()
+        run: |
+          docker logs $(docker ps -q --filter "ancestor=vartika1910/fastapi-app:latest")
+
       - name: Stop and remove Docker container
         run: |
-          docker ps -q --filter "ancestor=vartika1910/your-fastapi-app:latest" | xargs -r docker stop
-          docker ps -a -q --filter "ancestor=vartika1910/your-fastapi-app:latest" | xargs -r docker rm
+          docker ps -q --filter "ancestor=vartika1910/fastapi-app:latest" | xargs -r docker stop
+          docker ps -a -q --filter "ancestor=vartika1910/fastapi-app:latest" | xargs -r docker rm
