@@ -21,7 +21,7 @@ def get_db():
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"Fast API running successfully"}
 
 @app.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
