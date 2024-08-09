@@ -1,4 +1,4 @@
-name: Deploy FastAPI with Docker
+name: Deploy FastAPI with Docker   
 
 on:
   push:
